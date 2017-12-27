@@ -1,0 +1,25 @@
+{% load staticfiles %}
+%link{'href': 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css', 'rel': 'stylesheet'}
+%link{'href': '{% static "inventory_management/login.css" %}', 'rel': 'stylesheet'}
+%link{'href': '{% static "inventory_management/header.css" %}', 'rel': 'stylesheet'}
+{% include 'inventory_management/_header.html.haml' %}
+
+.left.col-md-3.hidden-xs-down
+  &nbsp;
+.signin-form-wrapper.col-md-6.col-xs-12
+  %form.form{:action => "/inventory/signin", :method => "post"}
+    {% csrf_token %}
+    .field-wrapper
+      %input.input.signin-input{:placeholder => "Username", :name => 'username', :type => "text"}
+      {{submittedform.username.errors|first}}
+    .field-wrapper
+      %input.input.signin-input{:placeholder => "Email Address", :name => "email", :type => "email"}
+      {{submittedform.email.errors|first}}{{error}}
+    .field-wrapper
+      %input.input.signin-input{:placeholder => "Password", :name => "password1", :type => "password"}
+      {{submittedform.password1.errors|first}}
+    .field-wrapper
+      %input.input.signin-input{:placeholder => "Confirm Password", :name => "password2", :type => "password"}
+      {{submittedform.password2.errors|first}}
+    .field-wrapper
+      %button.button.input.signin-input Signup

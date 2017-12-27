@@ -1,0 +1,39 @@
+.sidebar{
+  background-color: #00C0A5;
+  padding: 0em;
+  height: 100vh;
+  border-right: 0.6em solid #fff;
+}
+
+.sidebar-list{
+  margin: 0em;
+  padding: 0em 0em 0.5em 0em;
+}
+
+.sidebar-row{
+  list-style: none;
+  color: #fff;
+  font-size: 1.5em;
+  padding: 0.5em;
+  border-bottom: 0.3em solid #fff;
+}
+
+.main-content{
+  background-color: #00C0A5;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.sidebar-link{
+  color: #fff;
+}
+
+.sidebar-link:hover{
+  text-decoration: none;
+}
+
+.sidebar-row:hover{
+  background-color: #fff;
+  color: #00C0A5;
+}

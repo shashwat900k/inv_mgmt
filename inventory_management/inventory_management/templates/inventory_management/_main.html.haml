@@ -1,0 +1,33 @@
+{% load staticfiles %}
+%link{'href': 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css', 'rel': 'stylesheet'}
+%link{'href': '{% static "inventory_management/header.css" %}', 'rel': 'stylesheet'}
+%link{'href': '{% static "inventory_items/sidebar.css" %}', 'rel': 'stylesheet'}
+{% include 'inventory_management/_header.html.haml' %}
+.col-md-2.col-xs-4.sidebar
+  %ul.sidebar-list
+      %a.sidebar-link{'href': 'available_inventories'}
+        %li.sidebar-row.user-sidebar
+          Available Inventory
+      %a.sidebar-link{'href': 'assigned_inventories'}
+        %li.sidebar-row.user-sidebar
+          Assigned Inventories
+      %a.sidebar-link{'href': 'request_inventory'}
+        %li.sidebar-row.user-sidebar
+          Request Inventory
+      %a.sidebar-link{'href': 'profile'}
+        %li.sidebar-row.user-sidebar
+          Account Settings
+    {% if adminstatus %}
+      %a.sidebar-link{'href': 'add_inventory'}
+        %li.sidebar-row.admin-sidebar
+          Add Inventory
+      %a.sidebar-link{'href': 'update_inventory'}
+        %li.sidebar-row.admin-sidebar
+          Update Inventory
+      %a.sidebar-link{'href': 'list_inventory'}
+        %li.sidebar-row.admin-sidebar
+          Inventory List
+      %a.sidebar-link{'href': 'list_user'}
+        %li.sidebar-row.admin-sidebar
+          User List
+    {% endif %}

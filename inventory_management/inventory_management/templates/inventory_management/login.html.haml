@@ -1,0 +1,26 @@
+{% load staticfiles %}
+%link{'href': 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css', 'rel': 'stylesheet'}
+%link{'href': '{% static "inventory_management/login.css" %}', 'rel': 'stylesheet'}
+%link{'href': '{% static "inventory_management/header.css" %}', 'rel': 'stylesheet'}
+{% include 'inventory_management/_header.html.haml' %}
+
+.left.col-md-3.hidden-xs-down
+  &nbsp;
+.form-wrapper.col-md-6.col-xs-12
+  {% if error %}
+    %h3.server-response {{error}}
+  {% endif %}
+  %form.form{:action => "/inventory/", :method => "post"}
+    {% csrf_token %}
+    .field-wrapper
+      %input.input.login-input{:placeholder => "Username", :name => "username", :type => "text"}
+      {{submittedform.email.errors|first}}
+    .field-wrapper
+      %input.input.login-input{:placeholder => "Password", :name => "password1", :type => "password"}
+      {{submittedform.password1.errors|first}}
+    .field-wrapper
+      %button.button.input.login-input Login
+  .new-user-link
+    New user?
+    %br/
+    %a{'href' : '/inventory/signin'} Sign Up here

@@ -1,0 +1,45 @@
+.button{
+  background-color: #fff;
+  color: #58D5B9;
+  width: 10em;
+  height: 2.5em;
+  font-size: 1.5em;
+  margin: 2em 0em 2.5em 2em;
+}
+
+.form-wrapper{
+  height: 2em;
+  text-align: center;
+  padding-top: 8em;
+}
+
+.input{
+  width: 18em;
+  border: 0.1em solid #fff;
+  outline: none;
+  font-size: 2em;
+  text-align: center;
+  background-color: #58D5B9;
+  color: #fff;
+  height: 2.5em;
+  margin: 0.2em 0em 0.1em 0.8em;
+}
+
+.input::placeholder{
+  text-align: center;
+  color: #fff;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #58D5B9 inset !important;
+    -webkit-text-fill-color: #fff;
+}
+
+.add-inventory-button{
+  margin: 0.5em 0em 0em 1em;
+}
+
+.error-div{
+  color: #fff;
+  text-align: center;
+}

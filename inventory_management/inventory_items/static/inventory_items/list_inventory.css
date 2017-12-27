@@ -1,0 +1,27 @@
+.main-content{
+  background-color: #00C0A5;
+  text-align: center;
+}
+
+.heading-inventory-list{
+  padding-bottom: 1em;
+}
+
+.table-inventory-list{
+  margin: 0 auto;
+  margin-top: 5em;
+  table-layout: fixed;
+}
+
+.column{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #fff;
+  text-align: center;
+  font-size: 2em;
+}
+
+.data-inventory-list{
+  font-size: 1.5em;
+  padding: 0.25em 0em;
+}

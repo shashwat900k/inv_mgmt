@@ -1,0 +1,17 @@
+{% load staticfiles %}
+{% include 'inventory_management/_main.html.haml' %}
+%link{'href': '{% static "inventory_items/list_inventory.css" %}', 'rel': 'stylesheet'}
+.col-md-10.col-xs-8.main-content
+  %table.table-inventory-list.table.table-striped
+    %tr.row-inventory-list.row
+      %th.heading-inventory-list.column Type
+      %th.heading-inventory-list.column.col-xs-4 Description
+      %th.heading-inventory-list.column &nbsp;
+    {% for row in list_of_inventory %}
+    %tr.row-inventory-list.row
+      %td.data-inventory-list {{row.type}}
+      %td.data-inventory-list.col-xs-4 {{row.description}}
+      %td
+        %button Add item
+   {% endfor %}
+

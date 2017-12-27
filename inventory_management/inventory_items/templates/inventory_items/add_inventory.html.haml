@@ -1,0 +1,22 @@
+{% load staticfiles %}
+{% include 'inventory_management/_main.html.haml' %}
+%link{'href': '{% static "inventory_items/add_inventory.css" %}', 'rel': 'stylesheet'}
+.col-md-10.col-xs-8.main-content
+  .form-wrapper.col-xs-12
+    %form.form.inventory-form{:action => 'add_inventory/', :method => 'post'}
+      {% csrf_token %}
+      .field-wrapper
+        %input.input.inventory-input{:placeholder => 'Inventory type', :name => 'type', :type => 'text'}
+      .error-div.col-xs-12
+        {{submittedform.type.errors|first}}
+        {{error}}
+      .field-wrapper
+        %input.input.inventory-input{:placeholder => 'Description', :name => 'description', :type => 'text'}
+      .error-div.col-xs-12
+        {{submittedform.description.errors|first}}
+      .field-wrapper
+        %button.add-inventory-button.button
+          Add Inventory
+
+%script{'src': 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'}
+%script{'src': '{% static "inventory_items/js/add_inventory.js" %}' }
