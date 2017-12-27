@@ -5,11 +5,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from .forms import UserForm, InventoryForm, InventoryItemForm
-from utils import sendactivationemail
-from models import Inventory
 from django.shortcuts import redirect
+from django.core.exceptions import ObjectDoesNotExist
+
+from inventory_items.forms import UserForm, InventoryForm, InventoryItemForm
+from inventory_items.utils import sendactivationemail
+from inventory_items.models import Inventory
 # Create your views here.
+
 
 def signinForm(request):
     if request.POST:
@@ -66,11 +69,16 @@ def loginForm(request):
 
 
 def activateAccount(request, user_id):
-    if User.objects.filter(id=user_id).count():
+    try:
         user = User.objects.get(id=user_id)
-        user.is_active = True
-        user.save()
-        return render(request, 'inventory_items/home.html.haml')
+        if user.is_active:
+            return HttpResponse("Already activated")
+        else:
+            user.is_active = True
+            user.save()
+            return redirect('/inventory')
+    except ObjectDoesNotExist:
+        return HttpResponse("Not valid")
 
 def addInventory(request):
     if len(request.POST) == 0:

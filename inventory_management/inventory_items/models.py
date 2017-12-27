@@ -28,7 +28,7 @@ class InventoryItemList(models.Model):
         return UserInventoryMapping.objects.filter(item_id=self, is_accepted=True).aggregate(Sum('item_quantity'))
 
     def available(self):
-        return self.quantity - self.used - self.defected
+        return self.quantity - (self.used + self.defected)
 
     class Meta:
         db_table = 'tbl_inventory_item_list'
