@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.core.exceptions import ObjectDoesNotExist
+from django.core import signing
 
 from inventory_items.forms import UserForm, InventoryForm, InventoryItemForm
 from inventory_items.utils import sendactivationemail
@@ -68,8 +69,11 @@ def loginForm(request):
         return render(request, 'inventory_management/login.html.haml', {'form': form, 'submittedform': ''})
 
 
-def activateAccount(request, user_id):
+def activateAccount(request, data):
     try:
+        value = signing.loads(data)
+        user_id = int(value['user_info'])
+        print(user_id)
         user = User.objects.get(id=user_id)
         if user.is_active:
             return HttpResponse("Already activated")
