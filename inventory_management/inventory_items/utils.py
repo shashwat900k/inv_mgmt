@@ -1,10 +1,10 @@
 from django.core.mail import send_mail
-from django.core.signing import signing
+from django.core import signing
 
 def sendactivationemail(user_id, username, user_email):
     signer = signing.dumps({'user_info': user_id})
     url_link = 'http://localhost:8080/inventory/email_activation/'+signer
-    subject = "BC Invemtory Management: Email Activation"
+    subject = "BC Inventory Management: Email Activation"
     from_email = "shashwat@beautifulcode.in"
     to_email = [user_email]
     text_content = "Hey {}, thanks for registering on the Beautiful Code Inventory Management. Plase click on the below link to complete the registration process".format(username)

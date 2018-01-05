@@ -10,7 +10,7 @@
   {% if error %}
     %h3.server-response {{error}}
   {% endif %}
-  %form.form{:action => "/inventory/", :method => "post"}
+  %form.form{:action => "/inventory/login", :method => "post"}
     {% csrf_token %}
     .field-wrapper
       %input.input.login-input{:placeholder => "Username", :name => "username", :type => "text"}

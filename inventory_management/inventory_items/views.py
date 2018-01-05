@@ -15,6 +15,13 @@ from inventory_items.models import Inventory
 # Create your views here.
 
 
+def get_to_home_page(request):
+    if request.user.is_active:
+        return render(request, 'inventory_items/home.html.haml', {'adminstatus': request.user.is_superuser})
+    else:
+        return redirect('/inventory/login')
+
+
 def signinForm(request):
     if request.POST:
         form = UserForm(request.POST)
@@ -73,14 +80,13 @@ def activateAccount(request, data):
     try:
         value = signing.loads(data)
         user_id = int(value['user_info'])
-        print(user_id)
         user = User.objects.get(id=user_id)
         if user.is_active:
             return HttpResponse("Already activated")
         else:
             user.is_active = True
             user.save()
-            return redirect('/inventory')
+            return redirect('/inventory/home')
     except ObjectDoesNotExist:
         return HttpResponse("Not valid")
 
@@ -105,6 +111,4 @@ def addInventory(request):
 
 def listInventory(request):
     list_of_inventory = Inventory.objects.all()
-    for row in list_of_inventory:
-        print(row.type)
     return render(request, 'inventory_items/list_inventory.html.haml', {'adminstatus': request.user.is_superuser, 'list_of_inventory': list_of_inventory})
