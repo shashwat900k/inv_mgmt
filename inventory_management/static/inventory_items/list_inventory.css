@@ -1,7 +1,65 @@
 .main-content{
   background-color: #00C0A5;
+  text-align: center;
+}
+
+.heading-inventory-list{
+  padding-bottom: 1em;
 }
 
 .table-inventory-list{
+  margin: 0 auto;
+  margin-top: 1em;
+  table-layout: fixed;
+  word-wrap: break-word;
+  margin-left: -5em;
+}
+
+.column{
+  color: #fff;
+  font-size: 1.6em;
+  border: none;
+}
+
+.data-inventory-list{
+  font-size: 1.5em;
+  padding: 0.25em 0em;
+}
+
+.row-item-type{
+  display: none;
+}
+
+.add-item{
+  background-color: #fff;
+  color: #58D5B9;
   width: 10em;
+  height: 2.5em;
+  font-size: 1.5em;
+  margin: 2em 0em 2.5em 4em;
+}
+
+.decide-access{
+  background-color: #fff;
+  color: #58D5B9;
+}
+.reject-button{
+  margin-top: 0.5em;
+}
+
+.item-overview{
+  font-size: 3em;
+  color: #fff;
+  text-align: left;
+  margin: 0.5em 0em 0em 1em;
+}
+
+.button{
+  background-color: #fff;
+  color: #58D5B9;
+  font-size: 1.04em;
+}
+
+.main-content>.table>.row>.column{
+  border: none;
 }

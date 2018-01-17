@@ -1,0 +1,26 @@
+{% load staticfiles %}
+{% include 'inventory_management/_main.html.haml' %}
+%link{'href': '{% static "inventory_items/add_inventory.css" %}', 'rel': 'stylesheet'}
+.col-md-10.col-xs-8.main-content
+  .inventory-request-description
+    Requested by : {{user_inv_mapping.user_id.username}}
+    %br Item Requested : {{user_inv_mapping.item_id.type}} | Quantity Requested: {{user_inv_mapping.item_quantity_requested}}
+  .form-wrapper.col-xs-12
+    %form.form.inventory-form{:action => '', :method => 'post'}
+      {% csrf_token %}
+      .field-wrapper.col-xs-12
+        {{errormsg}}
+        .col-xs-4.heading-of-quantity Inventory Item Name
+        .col-xs-5.heading-of-quantity Specification
+        .col-xs-2.heading-of-quantity Quantities to assign
+      {% for row in inventory_item_list %}
+        %input.col-xs-4.inventory-input.assign-inventory{:placeholder => 'Inventory type', :name => 'name_list', :type => 'text', :value => "{{row.name}}", :readonly => 'True'}
+        %input.inventory-input.col-xs-5.assign-inventory{:placeholder => 'Description', :name => 'specification', :type => 'text', :value => "{{row.specification}}", :readonly => 'True'}
+        %input.inventory-input.col-xs-5.inventory-item-id{:placeholder => 'Description', :name => 'inventory_item_id', :type => 'text', :value => "{{row.id}}", :readonly => 'True'}
+        %input.inventory-input.col-xs-2.assign-inventory.inventory-quantity{:placeholder => '0', :name => 'quantity_list', :type => 'number', :max => "{row.quantity}", :min=> '0', :value => '0'}
+       {% endfor %}
+      .button-wrapper.col-xs-12
+        %button.assign-button.button Assign Inventories
+
+%script{'src': 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'}
+%script{'src': '{% static "inventory_items/js/list_inventory_item.js" %}' }

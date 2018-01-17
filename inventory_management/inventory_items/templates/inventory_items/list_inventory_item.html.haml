@@ -1,0 +1,29 @@
+{% load staticfiles %}
+{% include 'inventory_management/_main.html.haml' %}
+%link{'href': '{% static "inventory_items/list_inventory.css" %}', 'rel': 'stylesheet'}
+.col-md-10.col-xs-8.main-content
+  %h4.item-name-heading {{item_name}}
+  %button.add-item Add item
+    .row-item-type {{encrypted_item_name}}
+  %table.table-inventory-list.table
+    %tr.row-inventory-list.row
+      %th.heading-inventory-list.column Name
+      %th.heading-inventory-list.column.col-xs-2 Specification
+      %th.heading-inventory-list.column Quantity
+      %th.heading-inventory-list.column Defected
+      %th.heading-inventory-list.column &nbsp;
+    {% for row, inventory_item_id in list_of_inventory_items %}
+    %tr.row-inventory-list.row
+      %td.data-inventory-list {{row.name}}
+      %td.data-inventory-list.col-xs-2 {{row.specification}}
+      %td.data-inventory-list {{row.quantity}}
+      %td.data-inventory-list {{row.defected}}
+      %td.col-xs-2
+        %button.show-items.update-delete-item Update/Delete
+          .row-item-type {{inventory_item_id}}
+    {% endfor %}
+
+
+%script{'src': "http://code.jquery.com/jquery-latest.min.js", 'type': "text/javascript"}
+%script{'src': "{% static 'inventory_items/js/list_inventory_item.js' %}"}
+

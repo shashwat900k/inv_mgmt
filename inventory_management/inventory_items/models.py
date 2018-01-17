@@ -13,6 +13,9 @@ class Inventory(models.Model):
     def quantity(self):
         return InventoryItemList.objects.filter(inventory_id=self).aggregate(Sum('quantity'))
 
+    def used(self):
+        return InventoryItemList.objects.filter(inventory_id=self).used()
+
     class Meta:
         db_table = 'tbl_inventory'
 
@@ -25,10 +28,10 @@ class InventoryItemList(models.Model):
     defected = models.IntegerField(default=0)
 
     def used(self):
-        return UserInventoryMapping.objects.filter(item_id=self, is_accepted=True).aggregate(Sum('item_quantity'))
+        return UserInventoryItemMapping.objects.get(inventory_item_id=self).aggregate(Sum('quantity_assigned'))
 
     def available(self):
-        return self.quantity - (self.used + self.defected)
+        return self.quantity - (self.used() + self.defected)
 
     class Meta:
         db_table = 'tbl_inventory_item_list'
@@ -36,12 +39,21 @@ class InventoryItemList(models.Model):
 
 class UserInventoryMapping(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    item_id = models.ForeignKey(InventoryItemList, on_delete=models.CASCADE)
-    item_quantity = models.IntegerField()
+    item_id = models.ForeignKey(Inventory, on_delete=models.CASCADE)
+    item_quantity_requested = models.IntegerField()
     is_pending = models.BooleanField(default=True)
     is_accepted = models.BooleanField(default=False)
+    item_quantity_assigned = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'tbl_user_inventory_mapping'
 
+
+class UserInventoryItemMapping(models.Model):
+    inventory_item_mapping_id = models.ForeignKey(UserInventoryMapping, on_delete=models.CASCADE)
+    inventory_item_id = models.ForeignKey(InventoryItemList, on_delete=models.CASCADE)
+    quantity_assigned = models.IntegerField()
+
+    class Meta:
+        db_table = 'tbl_user_inventory_item_mapping'
 

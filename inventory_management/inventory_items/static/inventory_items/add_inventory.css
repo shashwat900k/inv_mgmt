@@ -25,9 +25,11 @@
   margin: 0.2em 0em 0.1em 0.8em;
 }
 
-.input::placeholder{
+.input::placeholder,
+.assign-inventory::placeholder{
   text-align: center;
   color: #fff;
+  font-size: 1em;
 }
 
 input:-webkit-autofill {
@@ -42,4 +44,48 @@ input:-webkit-autofill {
 .error-div{
   color: #fff;
   text-align: center;
+}
+
+.to-hide{
+  display: none;
+}
+
+.heading-inventory-type{
+  text-align: center;
+  color: #fff;
+}
+
+.assign-inventory{
+  border: 0.1em solid #fff;
+  outline: none;
+  text-align: center;
+  background-color: #58D5B9;
+  color: #fff;
+  margin: 0.2em 0em 0.1em 0.8em;
+  font-size: 2em;
+}
+
+.heading-of-quantity{
+  color: #fff;
+  font-size: 1.5em;
+  padding: 0em;
+  text-align: center;
+  margin-left: 0.9em;
+}
+.button-wrapper{
+  text-align: left;
+}
+.assign-button{
+  margin-left: 0.1em;
+}
+
+.inventory-request-description{
+  text-align: left;
+  color: #fff;
+  margin: 1.5em 0em 0em 2em;
+  font-size: 1.5em;
+}
+
+.inventory-item-id{
+  display: none;
 }

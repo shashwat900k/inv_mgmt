@@ -1,0 +1,18 @@
+{% load staticfiles %}
+{% include 'inventory_management/_main.html.haml' %}
+%link{'href': '{% static "inventory_items/add_inventory.css" %}', 'rel': 'stylesheet'}
+.col-md-10.col-xs-8.main-content
+  .form-wrapper.col-xs-12
+    %h2.heading-inventory-type
+      Inventory Item | {{inventory_item_detail.type}}
+    %form.form.inventory-form{:action => '', :method => 'post'}
+      {% csrf_token %}
+      .field-wrapper
+        %input.input.inventory-input-item{:name => 'type', :type => 'text', :disabled => 'True', :value => "{{inventory_item_detail.type}}"}
+      .field-wrapper
+        %input.input.inventory-input-item{:name => 'description', :type => 'text', :disabled => 'True', :value => "{{inventory_item_detail.description}}"}
+      .field-wrapper
+        %input.input.inventory-input-item{:placeholder => 'Quantity', :name => 'quantity', :type => 'number', :min => '0', :max => "{{quantity}}" }
+      .field-wrapper
+        %button.submit-inventory-request-button.button
+          Request Inventory

@@ -22,4 +22,4 @@ class InventoryForm(ModelForm):
 class InventoryItemForm(ModelForm):
     class Meta:
         model = InventoryItemList
-        fields = ['name', 'specification', 'quantity', 'defected']
+        fields = ['name', 'specification', 'quantity', 'defected', 'inventory_id']

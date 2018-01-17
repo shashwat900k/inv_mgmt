@@ -1,0 +1,41 @@
+{% load staticfiles %}
+{% include 'inventory_management/_main.html.haml' %}
+%link{'href': '{% static "inventory_items/list_inventory.css" %}', 'rel': 'stylesheet'}
+.col-md-10.col-xs-8.main-content
+  %table.table-inventory-list.table
+    %tr.row-inventory-list.row
+      %th.heading-inventory-list.column Username
+      %th.heading-inventory-list.column Item requested
+      %th.heading-inventory-list.column Assigned (Requested)
+      %th.heading-inventory-list.column Request status
+      -# %th.heading-inventory-list.column &nbsp;
+    {% for row,row_id in user_inventory_mapping_info %}
+    %tr.row-inventory-list.row
+      %td.data-inventory-list.column {{row.user_id.username}}
+      %td.data-inventory-list.column {{row.item_id.type}}
+      %td.data-inventory-list.column {{row.item_quantity_assigned}} ({{row.item_quantity_requested}})
+      {% if row.is_pending %}
+        %td.data-inventory-list.column Pending
+      {% elif row.is_accepted %}
+        %td.data-inventory-list.column Accepted
+      {% else %}
+        %td.data-inventory-list.column Rejected
+      {% endif %}
+      %td
+        {% if row.is_pending %}
+          %button.decide-access.accept-button.button.col-xs-8 Accept
+            .row-item-type {{row_id}}
+          %button.decide-access.reject-button.button.col-xs-8 Reject
+            .row-item-type {{row_id}}
+        {% elif row.is_accepted %}
+          %button.decide-action.update-button.button.col-xs-8 Update
+            .row-item-type {{row_id}}
+          %button.decide-action.delete-button.button.col-xs-8 Delete
+            .row-item-type {{row_id}}
+        {% endif %}
+    {% endfor %}
+
+
+%script{'src': "http://code.jquery.com/jquery-latest.min.js", 'type': "text/javascript"}
+%script{'src': "{% static 'inventory_items/js/list_inventory_item.js' %}"}
+

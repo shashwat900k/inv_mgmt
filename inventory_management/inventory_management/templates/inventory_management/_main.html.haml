@@ -5,29 +5,23 @@
 {% include 'inventory_management/_header.html.haml' %}
 .col-md-2.col-xs-4.sidebar
   %ul.sidebar-list
-      %a.sidebar-link{'href': '/inventory/available_inventories'}
+      %a.sidebar-link{'href': '/inventory/profile'}
         %li.sidebar-row.user-sidebar
-          Available Inventory
-      %a.sidebar-link{'href': '/inventory/assigned_inventories'}
-        %li.sidebar-row.user-sidebar
-          Assigned Inventories
+          My Account
       %a.sidebar-link{'href': '/inventory/request_inventory'}
         %li.sidebar-row.user-sidebar
           Request Inventory
-      %a.sidebar-link{'href': '/inventory/profile'}
+      %a.sidebar-link{'href': '/inventory/assigned_inventory'}
         %li.sidebar-row.user-sidebar
-          Account Settings
+          Assigned Inventories
     {% if adminstatus %}
       %a.sidebar-link{'href': '/inventory/add_inventory'}
         %li.sidebar-row.admin-sidebar
           Add Inventory
-      %a.sidebar-link{'href': '/inventory/update_inventory'}
-        %li.sidebar-row.admin-sidebar
-          Update Inventory
       %a.sidebar-link{'href': '/inventory/list_inventory'}
         %li.sidebar-row.admin-sidebar
           Inventory List
-      %a.sidebar-link{'href': '/inventory/list_user'}
+      %a.sidebar-link{'href': '/inventory/user_inventory_mapping'}
         %li.sidebar-row.admin-sidebar
-          User List
+          User Inventory Mapping
     {% endif %}

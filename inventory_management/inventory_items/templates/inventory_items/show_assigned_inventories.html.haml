@@ -1,0 +1,16 @@
+{% load staticfiles %}
+{% include 'inventory_management/_main.html.haml' %}
+%link{'href': '{% static "inventory_items/list_inventory.css" %}', 'rel': 'stylesheet'}
+.col-md-10.col-xs-8.main-content
+  {% for user_inv_mapping, items in assigned_inventory_items_mapping %}
+    .item-overview {{user_inv_mapping.item_id.type}} | {{user_inv_mapping.item_quantity_assigned}}
+    %table.table-inventory-list.table
+      %tr.row-inventory-list.row
+        %th.heading-inventory-list.column Item name
+        %th.heading-inventory-list.column Quantities
+      {% for item_breakup in items %}
+      %tr.row-inventory-list.row
+        %td.data-inventory-list.column {{item_breakup.inventory_item_id.name}}
+        %td.data-inventory-list.column {{item_breakup.quantity_assigned}}
+      {% endfor %}
+  {% endfor %}

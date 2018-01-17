@@ -5,18 +5,20 @@
   %table.table-inventory-list.table
     %tr.row-inventory-list.row
       %th.heading-inventory-list.column Type
-      %th.heading-inventory-list.column.col-xs-4 Description
+      %th.heading-inventory-list.column.col-xs-3 Description
+      %th.heading-inventory-list.column Quantity
       %th.heading-inventory-list.column &nbsp;
-    {% for list_of_inventory,list_of_inventory_names in list_of_inventory %}
+    {% for list_of_inventory,list_of_inventory_names,quantity in list_of_inventory %}
     %tr.row-inventory-list.row
       %td.data-inventory-list.column {{list_of_inventory.type}}
-      %td.data-inventory-list.col-xs-4.column {{list_of_inventory.description}}
+      %td.data-inventory-list.column.col-xs-3 {{list_of_inventory.description}}
+      %td.data-inventory-list.column {{quantity}}
       %td
-        %button.show-items Show all items
+        %button.request-inventory.button Request inventory
           .row-item-type {{list_of_inventory_names}}
    {% endfor %}
 
 
 %script{'src': "http://code.jquery.com/jquery-latest.min.js", 'type': "text/javascript"}
-%script{'src': "{% static 'inventory_items/js/add_inventory.js' %}"}
+%script{'src': "{% static 'inventory_items/js/list_inventory_item.js' %}"}
 

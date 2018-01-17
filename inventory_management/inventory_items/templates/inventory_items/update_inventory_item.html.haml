@@ -1,0 +1,33 @@
+{% load staticfiles %}
+{% include 'inventory_management/_main.html.haml' %}
+%link{'href': '{% static "inventory_items/add_inventory.css" %}', 'rel': 'stylesheet'}
+.col-md-10.col-xs-8.main-content
+  .form-wrapper.col-xs-12
+    %form.form.inventory-form{:action => '', :method => 'post'}
+      {% csrf_token %}
+      .field-wrapper
+        %input.input.inventory-input-item{:placeholder => 'Inventory item name', :name => 'name', :type => 'text', :value => "{{item_info.name}}"}
+      .error-div.col-xs-12
+        {{submittedform.name.errors|first}}
+      .field-wrapper
+        %input.input.inventory-input-item{:placeholder => 'Specification', :name => 'specification', :type => 'text', :value => "{{item_info.specification}}"}
+      .error-div.col-xs-12
+        {{submittedform.specification.errors|first}}
+      .field-wrapper
+        %input.input.inventory-input-item{:placeholder => 'Quantity', :name => 'quantity', :type => 'number', :min => '0', :value => "{{item_info.quantity}}"}
+      .error-div.col-xs-12
+        {{submittedform.quantity.errors|first}}
+      .field-wrapper
+        %input.input.inventory-input-item{:placeholder => 'Not working', :name => 'defected', :type => 'number', :min => '0', :value => "{{item_info.defected}}"}
+      .error-div.col-xs-12
+        {{submittedform.defected.errors|first}}
+      .field-wrapper
+        %input.input.inventory-input-item.to-hide{:name => 'inventory_id', :type => 'number', :value => "{{item_info.inventory_id.id}}" }
+      .field-wrapper
+        %button.add-inventory-button.button
+          Update
+    .field-wrapper
+      %button.button.delete-button Delete
+        .inventory-input-item.to-hide {{inv_item_id}}
+%script{'src': 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'}
+%script{'src': '{% static "inventory_items/js/list_inventory_item.js" %}' }

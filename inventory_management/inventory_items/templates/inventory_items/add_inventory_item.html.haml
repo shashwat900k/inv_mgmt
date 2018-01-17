@@ -1,0 +1,31 @@
+{% load staticfiles %}
+{% include 'inventory_management/_main.html.haml' %}
+%link{'href': '{% static "inventory_items/add_inventory.css" %}', 'rel': 'stylesheet'}
+.col-md-10.col-xs-8.main-content
+  .form-wrapper.col-xs-12
+    %h2.heading-inventory-type
+      Inventory Item | {{item_name}}
+    %form.form.inventory-form{:action => '', :method => 'post'}
+      {% csrf_token %}
+      .field-wrapper
+        %input.input.inventory-input-item{:placeholder => 'Inventory item name', :name => 'name', :type => 'text'}
+      .error-div.col-xs-12
+        {{submittedform.name.errors|first}}
+      .field-wrapper
+        %input.input.inventory-input-item{:placeholder => 'Specification', :name => 'specification', :type => 'text'}
+      .error-div.col-xs-12
+        {{submittedform.specification.errors|first}}
+      .field-wrapper
+        %input.input.inventory-input-item{:placeholder => 'Quantity', :name => 'quantity', :type => 'number', :min => '0'}
+      .error-div.col-xs-12
+        {{submittedform.quantity.errors|first}}
+      .field-wrapper
+        %input.input.inventory-input-item{:placeholder => 'Not working', :name => 'defected', :type => 'number', :min => '0'}
+      .error-div.col-xs-12
+        {{submittedform.defected.errors|first}}
+      .field-wrapper
+        %input.input.inventory-input-item.to-hide{:name => 'inventory_id', :type => 'number', :value => '{{item_id}}' }
+      .field-wrapper
+        %button.add-inventory-button.button
+          Add Inventory Item
+
